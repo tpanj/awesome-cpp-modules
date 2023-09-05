@@ -4,6 +4,8 @@ module;
 
 export module foo;
 
+export extern const int LUCKY_NUMBER = 7;
+
 // Forwad declaration of function is not needed
 // baceuse e.g. it was not used in cosntrucor in class declaration
 // but if also want to hold signatures in one place..
@@ -22,9 +24,16 @@ foo::~foo() {
     std::cout << "Destructor called \n";
 }
 
+// Exporting namespaces also works: hi::english() and hi::french() will be visible.
+export namespace hi
+{
+    char const* english() { return "Hello"; }
+    char const* french()  { return "Salut"; }
+}
+
 // Method example
 void foo::helloworld(int n) {
-  std::cout << "hello world " << n << std::endl;
+  std::cout << hi::english() << " world " << n << std::endl;
 }
 
 int privateFunction(int a, int b) {
