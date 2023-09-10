@@ -71,10 +71,20 @@ Clone repository and build
 
 Explicit defining `clang` compiler and `ninja` generator
 
-    CXX=clang-17 -G Ninja cmake ..
+    CXX=clang-17 cmake -G Ninja ..
 
 Make executable
 
     cmake --build .
     
 You can now run hello executable.
+
+# Troubles solving
+
+## MSVS
+
+- [ ] Solve IntelliSense support for 17.7.3 +
+
+## CLang
+
+- [ ] Warning: it is deprecated to read module 'speech:X' implicitly; it is going to be removed in clang 18; consider to specify the dependencies explicitly [-Wread-modules-implicitly]

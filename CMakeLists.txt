@@ -19,6 +19,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC" AND CMAKE_CXX_COMPILER_VERSION VERSION
       PUBLIC
         FILE_SET all_my_modules TYPE CXX_MODULES FILES
         foo.cc
+        fragments/speech_slovenian.cc fragments/speech_spanish.cc fragments/speech.cc
     )
 
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"  AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 13.0)
@@ -26,8 +27,7 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"  AND CMAKE_CXX_COMPILER_VERSION VER
     set(CMAKE_CXX_EXTENSIONS ON)
 
     # Project files
-    add_executable(hello foo.cc main.cc) # order matters
-    target_link_libraries(hello)
+    add_executable(hello foo.cc fragments/speech_slovenian.cc fragments/speech_spanish.cc fragments/speech.cc main.cc ) # order matters
 
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 17)
     find_program(CLANG_TIDY NAMES clang-tidy REQUIRED)
@@ -38,6 +38,9 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND CMAKE_CXX_COMPILER_VERSION VER
     add_library(foo)
     target_sources(foo PUBLIC FILE_SET CXX_MODULES FILES
         foo.cc
+        fragments/speech.cc
+        fragments/speech_slovenian.cc
+        fragments/speech_spanish.cc
     )
     add_executable(hello main.cc)
     target_link_libraries(hello foo)
